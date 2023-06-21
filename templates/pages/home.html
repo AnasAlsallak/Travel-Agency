@@ -1,11 +1,31 @@
 {% extends '_base.html' %}
 {% load static %}
+{% load socialaccount %}
 
 {% block title %}Home page{% endblock title %}
 
 {% block content %}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <img src="{% static 'images/logo.png' %}" class="img-fluid" alt="DjangoX logo"/>
+  <img src="{% static 'images/trimg.jpg' %}" class="img-fluid" alt="DjangoX logo"/>
   <p class="lead">A Django starter project with batteries.</p>
+</div>
+
+<div class="container" style="text-align: center; padding-top: 10%;">
+  <h1>Django Social Login</h1>
+
+  <br /><br />
+
+  {% if user.is_authenticated %}
+    <h3>Welcome {{ user.username }} !!!</h3>
+    <br /><br />
+    <a href="{% url 'account_logout' %}" class="btn btn-danger">Logout</a>
+  {% else %}
+    <!-- GitHub button starts here -->
+    <a href="{% provider_login_url 'github' %}" class="btn btn-secondary">
+      <i class="fa fa-github fa-fw"></i>
+      <span>Login with GitHub</span>
+    </a>
+    <!-- GitHub button ends here -->
+  {% endif %}
 </div>
 {% endblock content %}

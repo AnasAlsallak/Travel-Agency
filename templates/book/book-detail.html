@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+
+{% block content %}
+
+<h2>Details about {{ book.destination }}</h2>
+<h2>Agent: {{ book.agent.first_name }} {{ book.agent.last_name }} {{ book.agent.username }}</h2>
+<p>{{ book.desc }}</p>
+<img src="{{ book.img_url }}" alt="{{ book.destination }}" width="300px" height="300px">
+<a href="{% url 'book_update' book.pk %}">+ Update book</a>
+<a href="{% url 'book_delete' book.pk %}">+ Delete book</a>
+
+{% endblock content %}
+
